@@ -31,7 +31,9 @@ enum PinAssignments {
    clear1button = 4,    // switch
    encoder2pinA = 19,  // right
    encoder2pinB = 18,   // left
-   clear2button = 17    // switch
+   clear2button = 17,    // switch
+
+   randomPin    = 12,  // Random input.
 };
 
 const int DEBOUNCE = 10;
@@ -117,6 +119,8 @@ Knob k1(1, encoder1pinA, encoder1pinB, clear1button);
 Knob k2(2, encoder2pinA, encoder2pinB, clear2button);
 
 void setup() {
+  randomSeed(randomPin);
+  
   k1.setup();
   k2.setup();
 
