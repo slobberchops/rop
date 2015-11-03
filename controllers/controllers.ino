@@ -18,6 +18,12 @@
 
 */
 
+#include <Wire.h>
+#include <Adafruit_MotorShield.h>
+#include "utility/Adafruit_PWMServoDriver.h"
+#include "motorlib.h"
+
+
 // usually the rotary encoders three pins have the ground pin in the middle
 enum PinAssignments {
    encoder1pinA = 2,   // right
@@ -124,6 +130,8 @@ void setup() {
 // encoder pin on interrupt 5 (pin 18)
    attachInterrupt(5, doEncoderA2, CHANGE);
 
+   init_motors();
+
    Serial.begin(9600);  // output
    Serial.println("Knobs initialized");
 }
@@ -131,6 +139,7 @@ void setup() {
 void loop() {
   k1.loop();
   k2.loop();
+  loop_motors();
 }
 
 void doEncoderA1() {
