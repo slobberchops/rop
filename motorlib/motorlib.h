@@ -33,9 +33,13 @@ public:
     void reset() {
         // Expires in between 10 and 20 seconds.
         expiration_ = random(10, 20) * 1e6 + millis();
-        motor_->run(random(FORWARD, BACKWARD + 1));
-        motor_->setSpeed(random(1, 256));
-        motor_->run(RELEASE);
+        if (random(5)) {
+            motor_->run(random(FORWARD, BACKWARD + 1));
+            motor_->setSpeed(random(1, 256));
+            motor_->run(RELEASE);
+        } else {
+            stop();
+        }
     }
 
     void stop() {
